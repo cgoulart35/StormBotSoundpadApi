@@ -21,7 +21,7 @@ namespace StormBotSoundpadApi
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddSingleton<ISoundpadService, SoundpadService>();
-			services.AddControllers();
+			services.AddControllers().AddNewtonsoftJson();
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "StormBotSoundpadApi", Version = "v1" });

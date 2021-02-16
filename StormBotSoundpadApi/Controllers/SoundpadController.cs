@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SoundpadConnector.Response;
 using StormBotSoundpadApi.Models;
 using StormBotSoundpadApi.Services;
+using VideoLibrary;
 
 namespace StormBotSoundpadApi.Controllers
 {
@@ -61,13 +62,17 @@ namespace StormBotSoundpadApi.Controllers
 			if (addMp3Body.source == "" || addMp3Body.source == null)
 				return BadRequest("Invalid source.");
 
-			if (addMp3Body.video == null)
+			if (addMp3Body.videoURL == "" || addMp3Body.videoURL == null)
 				return BadRequest("Invalid video.");
 
 			if (addMp3Body.soundName == "" || addMp3Body.soundName == null)
 				return BadRequest("Invalid sound name.");
 
-			bool saved = soundpadService.SaveMP3(addMp3Body.source, addMp3Body.video, addMp3Body.soundName);
+			YouTubeVideo video = soundpadService.GetYouTubeVideo(addMp3Body.videoURL);
+			if (video == null)
+				return BadRequest($"Invalid YouTube video URL.");
+
+			bool saved = soundpadService.SaveMP3(addMp3Body.source, video, addMp3Body.soundName);
 
 			return !saved ? BadRequest($"A sound with the name '{addMp3Body.soundName}' already exists in this category.") : Ok(saved);
 		}

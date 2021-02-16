@@ -1,11 +1,17 @@
-﻿using VideoLibrary;
+﻿using Newtonsoft.Json;
+using VideoLibrary;
 
 namespace StormBotSoundpadApi.Models
 {
 	public class AddMp3Body
 	{
+		[JsonProperty("source")]
 		public string source;
-		public YouTubeVideo video;
+
+		[JsonProperty("videoURL")]
+		public string videoURL;
+
+		[JsonProperty("soundName")]
 		public string soundName;
 	}
 }

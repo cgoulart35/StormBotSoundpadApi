@@ -18,6 +18,8 @@ namespace StormBotSoundpadApi.Services
 
         public Task<CategoryListResponse> GetCategories();
 
+        public YouTubeVideo GetYouTubeVideo(string videoURL);
+
         public bool SaveMP3(string source, YouTubeVideo video, string soundName);
 
         public Task<bool> AddSound(string path, int index, int categoryIndex);

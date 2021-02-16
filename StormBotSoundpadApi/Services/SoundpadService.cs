@@ -95,6 +95,22 @@ namespace StormBotSoundpadApi.Services
             }
         }
 
+        public YouTubeVideo GetYouTubeVideo(string videoURL)
+        {
+            // try create an instance of the YouTube video with the specified url
+            try
+            {
+                YouTube youtube = YouTube.Default;
+                YouTubeVideo video = youtube.GetVideo(videoURL);
+                return video;
+            }
+            // video does not exist
+            catch (ArgumentException)
+            {
+                return null;
+            }
+        }
+
         public bool SaveMP3(string source, YouTubeVideo video, string soundName)
         {
             string fileName = source + soundName + ".mp4";
