@@ -26,7 +26,7 @@ The latest version 1.0 utilizes ASP.NET Core 5.0 and .NET 5.0 (latest .NET Core)
 
 - Used to download a YouTube video onto the same machine as the Soundpad application.
 
-- Arguments: AddMp3Body object { string source, YouTubeVideo video, string soundName } passed in body.
+- Arguments: AddMp3Body object { string source, string videoURL, string soundName } passed in body.
 
 ### POST /Soundpad/addSound
 
