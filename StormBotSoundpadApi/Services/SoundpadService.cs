@@ -105,7 +105,7 @@ namespace StormBotSoundpadApi.Services
                 return video;
             }
             // video does not exist
-            catch (ArgumentException)
+            catch (Exception)
             {
                 return null;
             }
