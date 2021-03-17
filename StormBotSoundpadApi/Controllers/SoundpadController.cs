@@ -71,6 +71,9 @@ namespace StormBotSoundpadApi.Controllers
 			YouTubeVideo video = soundpadService.GetYouTubeVideo(addMp3Body.videoURL);
 			if (video == null)
 				return BadRequest($"Invalid YouTube video URL.");
+			
+			if (video.Info.LengthSeconds > 600)
+				return BadRequest($"Invalid YouTube video length; please keep under 10 minutes long.");
 
 			bool saved = soundpadService.SaveMP3(addMp3Body.source, video, addMp3Body.soundName);
 
